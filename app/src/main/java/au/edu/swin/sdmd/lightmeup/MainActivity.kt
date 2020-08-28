@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 
-
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val KEY_IMAGE = "IMAGE"
+    }
+    
     // this keeps track of the current image
     var state = R.drawable.ic_assignment_turned_in_24px
 
@@ -14,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val imageView = findViewById<ImageView>(R.id.imageView)
+
+        savedInstanceState?.let {
+            state = it.getInt(KEY_IMAGE)
+            imageView.setImageDrawable(getDrawable(state))
+        }
+
+
         imageView.setOnLongClickListener {
             // update the image state
             state = when (state) {
@@ -25,5 +36,10 @@ class MainActivity : AppCompatActivity() {
             imageView.setImageDrawable(getDrawable(state))
             true
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_IMAGE, state)
     }
 }
