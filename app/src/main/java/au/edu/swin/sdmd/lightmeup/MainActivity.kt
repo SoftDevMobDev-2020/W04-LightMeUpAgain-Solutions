@@ -51,7 +51,8 @@ class ImageViewModel: ViewModel() {
     fun nextImage() {
         state = when (state) {
             R.drawable.ic_assignment_turned_in_24px -> R.drawable.ic_assignment_late_24px
-            R.drawable.ic_assignment_late_24px -> R.drawable.ic_assignment_turned_in_24px
+            R.drawable.ic_assignment_late_24px -> R.drawable.ic_assignment_returned_black_24dp
+            R.drawable.ic_assignment_returned_black_24dp -> R.drawable.ic_assignment_turned_in_24px
             else -> R.drawable.ic_assignment_turned_in_24px
         }
     }
